@@ -1,0 +1,35 @@
+.spiel {}
+
+.antwortContainer {
+  display: grid;
+}
+
+.antwort,
+.letzteAntwort {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.letzteAntwort {
+  color: green;
+  animation-name: moveUpAndFadeOut;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.letzteAntwort_falsch {
+  color: red;
+  text-decoration: line-through;
+}
+
+@keyframes moveUpAndFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+}
