@@ -59,6 +59,7 @@ export function Spiel({ spiel, setAktivesSpiel, setModus }) {
       darstellungsString: createDarstellungsString(aktuelleAufgabe, updatedAntwort),
       aufgabeNummer,
       warRichtig,
+      randomValue: Math.random(),
     });
 
   }
@@ -66,7 +67,7 @@ export function Spiel({ spiel, setAktivesSpiel, setModus }) {
   return (
     <div className={styles.spiel}>
       {letzteRunde?.warRichtig === true && <div style={{ fontSize: "5rem" }}>
-        {letzteRunde.aufgabe.faktor1 === 7 && letzteRunde.aufgabe.faktor2 === 7 ? "⌛" : randomPositiveEmoji()}
+        {letzteRunde.aufgabe.faktor1 === 7 && letzteRunde.aufgabe.faktor2 === 7 ? "⌛" : randomPositiveEmoji(letzteRunde.randomValue)}
       </div>}
       {letzteRunde?.warRichtig === false && <div style={{ fontSize: "5rem" }}>🤮</div>}
       <div className={styles.antwortContainer}>
@@ -95,7 +96,7 @@ function createDarstellungsString(aufgabe, antwort) {
   return `${aufgabe.faktor1} × ${aufgabe.faktor2}${antwort ? ` = ${antwort}` : ''}`;
 }
 
-function randomPositiveEmoji() {
+function randomPositiveEmoji(randomValue) {
   const emojis = ["🌟", "🎉", "👍", "🥳", "🎈", "🎊", "🥇"];
-  return emojis[Math.floor(Math.random() * emojis.length)];
+  return emojis[Math.floor(randomValue * emojis.length)];
 }
